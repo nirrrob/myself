@@ -1,318 +1,215 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Nafis Mahmud Nirob — NSU CSE student and aspiring software engineer.">
-<title>Nafis Mahmud Nirob | Developer Portfolio</title>
-
-<style>
-:root {
-  --bg: #0b1020;
-  --panel: #121a2e;
-  --text: #edf2ff;
-  --muted: #a3aec5;
-  --accent: #60a5fa;
-  --line: #26334d;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: system-ui, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-}
-a { color: inherit; text-decoration: none; }
-.container { width: min(1080px, 90%); margin: auto; }
-header {
-  position: sticky; top: 0; z-index: 10;
-  background: #0b1020eF;
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-}
-nav {
-  min-height: 72px;
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 20px;
-}
-.logo { font-size: 1.4rem; font-weight: 800; }
-.logo span, h1 span, h2 span { color: var(--accent); }
-.nav-links { display: flex; flex-wrap: wrap; gap: 20px; }
-.nav-links a:hover, .contact a:hover { color: var(--accent); }
-
-.hero {
-  min-height: 82vh;
-  display: grid; grid-template-columns: 1.2fr 0.8fr;
-  align-items: center; gap: 48px; padding-top: 65px;
-  padding-bottom: 65px;
-}
-.eyebrow {
-  color: var(--accent); font-size: .8rem;
-  letter-spacing: 2px; font-weight: 700;
-}
-h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.12; margin: 20px 0; }
-h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.2; }
-p { color: var(--muted); }
-.profile-wrap {
-  width: 230px; height: 230px; margin: 0 auto 28px;
-  padding: 5px; border-radius: 50%;
-  background: linear-gradient(135deg, #60a5fa, #a78bfa);
-  box-shadow: 0 0 55px #60a5fa25;
-}
-.profile-wrap img {
-  display: block; width: 100%; height: 100%;
-  object-fit: cover; border-radius: 50%;
-  border: 4px solid var(--bg);
-}
-.code-card, .card {
-  background: var(--panel); border: 1px solid var(--line);
-  border-radius: 18px; padding: 25px;
-}
-.code-card { box-shadow: 0 25px 70px #0003; }
-.code-card pre {
-  white-space: pre-wrap; overflow-wrap: anywhere;
-  color: #a7f3d0; font-size: 1rem;
-}
-.buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 25px 0; }
-.button {
-  display: inline-block; padding: 11px 18px;
-  border-radius: 10px; border: 1px solid var(--accent);
-}
-.primary { background: var(--accent); color: #08111f; font-weight: 700; }
-section.content { padding-top: 65px; padding-bottom: 65px; }
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.grid.three { grid-template-columns: repeat(3, 1fr); }
-.card h3 { margin-top: 0; }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.tags span {
-  padding: 4px 10px; border-radius: 20px;
-  background: #24324b; color: #c8dcff; font-size: .82rem;
-}
-.contact { text-align: center; }
-footer { border-top: 1px solid var(--line); padding: 25px 0; }
-footer p { font-size: .9rem; }
-
-#splash-screen {
-  position: fixed; inset: 0; z-index: 9999;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center; padding: 24px;
-  overflow: hidden; cursor: pointer;
-  background: #080b14; color: white;
-  transition: opacity .8s ease, visibility .8s ease;
-}
-#splash-screen::before {
-  content: ""; position: absolute;
-  width: 320px; height: 320px; border-radius: 50%;
-  background: #6554ff; filter: blur(120px); opacity: .4;
-  pointer-events: none;
-  animation: glow 5s ease-in-out infinite alternate;
-}
-#splash-screen.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.splash-content { position: relative; animation: appear 1s ease both; }
-.splash-content h1 { font-size: clamp(3rem, 10vw, 5rem); margin: 10px 0; }
-.splash-content p { letter-spacing: 3px; }
-.splash-content .tagline { letter-spacing: 0; margin: 24px 0; }
-#splash-enter {
-  padding: 14px 25px; border: 1px solid #60a5fa;
-  border-radius: 50px; background: linear-gradient(120deg,#4f46e5,#0284c7);
-  color: white; font-size: 1rem; cursor: pointer;
-}
-.splash-hint {
-  position: absolute; bottom: 32px; font-size: .75rem;
-  letter-spacing: 2px; color: #94a3b8;
-}
-@keyframes appear {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes glow {
-  from { transform: translate(-40px,-20px); }
-  to { transform: translate(40px,20px); }
-}
-@media (max-width: 760px) {
-  .hero { grid-template-columns: 1fr; gap: 25px; padding-top: 45px; }
-  .grid, .grid.three { grid-template-columns: 1fr; }
-  nav { align-items: flex-start; padding: 16px 0; flex-direction: column; }
-  .nav-links { gap: 12px; font-size: .9rem; }
-  .profile-wrap { width: 190px; height: 190px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Nafis Nirob — CSE student, programmer and problem solver.">
+  <title>Nafis Nirob | Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-<div id="splash-screen">
-  <div class="splash-content">
-    <p>PERSONAL PORTFOLIO</p>
-    <h1>nafis<span>.dev</span></h1>
-    <p>NAFIS MAHMUD NIROB</p>
-    <p class="tagline">A curious mind. A future software engineer.</p>
-    <button type="button" id="splash-enter">Entering in 3... ↗</button>
-  </div>
-  <div class="splash-hint">TAP ANYWHERE OR WAIT TO ENTER</div>
-</div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
 
-<header>
-  <nav class="container">
-    <a class="logo" href="#home">nafis<span>.dev</span></a>
-    <div class="nav-links">
+  <header class="navbar">
+    <a href="#home" class="logo">NN<span>.</span></a>
+    <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#interests">Interests</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-</header>
+      <a href="#contact" class="nav-contact">Let's connect ↗</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+  </header>
 
-<main>
-<section class="hero container" id="home">
-  <div>
-    <p class="eyebrow">CSE STUDENT · NORTH SOUTH UNIVERSITY</p>
-    <h1>Learning to build <span>useful things</span> with code.</h1>
-    <p>Hi, I'm Nafis Mahmud Nirob, a CSE student at North South University in Dhaka. I'm developing my software engineering foundation through Java, C/C++, algorithms, and hands-on projects.</p>
-    <div class="buttons">
-      <a class="button primary" href="#projects">Explore projects ↘</a>
-      <a class="button" href="#contact">Get in touch</a>
-    </div>
-    <p>📍 Dhaka, Bangladesh · Currently learning C++ & Java</p>
-  </div>
-  <div>
-    <div class="profile-wrap">
-      <img src="1000054014.jpg" alt="Nafis Mahmud Nirob">
-    </div>
-    <div class="code-card">
-      <p class="eyebrow">HELLO, WORLD!</p>
-      <pre><code>#include &lt;iostream&gt;
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-content reveal">
+        <div class="status"><span class="pulse"></span> AVAILABLE FOR LEARNING & COLLABORATION</div>
+        <p class="eyebrow">HELLO, WORLD! I'M</p>
+        <h1>Nafis <span class="gradient-text">Nirob.</span></h1>
+        <h2>Building my future, <br> <span class="muted">one line at a time.</span></h2>
+        <p class="hero-description">
+          CSE undergraduate, curious problem solver, and aspiring software
+          engineer. I enjoy understanding how things work and turning
+          ideas into working code.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">Explore my work <span>↗</span></a>
+          <a href="#about" class="btn btn-secondary">Get to know me</a>
+        </div>
+        <div class="hero-meta">
+          <span>📍 Dhaka, Bangladesh</span>
+          <span>🎓 Computer Science & Engineering</span>
+        </div>
+      </div>
 
-int main() {
-  std::cout &lt;&lt; "Nafis Mahmud Nirob";
-  return 0;
-}</code></pre>
-    </div>
-  </div>
-</section>
+      <div class="hero-visual reveal">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="profile-card">
+          <div class="card-top"><span>PROFILE.EXE</span><span>● ● ●</span></div>
+          <div class="avatar">
+            <img src="profile.jpg" alt="Nafis Nirob" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <div class="avatar-fallback">NN<span>.</span></div>
+          </div>
+          <h3>Nafis Nirob</h3>
+          <p class="mono">Aspiring Software Engineer</p>
+          <div class="card-divider"></div>
+          <div class="mini-stat"><span>Current focus</span><strong>Programming</strong></div>
+          <div class="mini-stat"><span>Mindset</span><strong>Always learning ↗</strong></div>
+          <div class="code-decoration">&lt;/&gt;</div>
+        </div>
+        <div class="floating-tag tag-code">{" }"} C++</div>
+        <div class="floating-tag tag-java">☕ Java</div>
+        <div class="floating-tag tag-idea">✦ Curious mind</div>
+      </div>
+      <a class="scroll-hint" href="#about">SCROLL TO EXPLORE <span>↓</span></a>
+    </section>
 
-<section class="content container" id="about">
-  <p class="eyebrow">01 / ABOUT</p>
-  <h2>A little about me.</h2>
-  <div class="grid">
-    <div class="card"><h3>My journey</h3>
-      <p>I'm a Computer Science and Engineering student at North South University, building a strong foundation in programming and problem-solving. I learn by building, testing, and improving projects.</p>
-    </div>
-    <div class="card"><h3>Outside coding</h3>
-      <p>I follow cricket and football. Bangladesh and New Zealand are my favourite cricket teams, while Argentina and FC Barcelona are my football favourites. I'm also fascinated by astronomy and astrophysics.</p>
-    </div>
-  </div>
-</section>
+    <section class="section about-section" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow">01 / THE PERSON BEHIND THE CODE</p>
+        <h2>👨‍💻 About <span class="gradient-text">Me</span></h2>
+        <p>More than just a student learning to code.</p>
+      </div>
+      <div class="about-grid">
+        <article class="glass about-card reveal">
+          <div class="card-icon">🎓</div>
+          <h3>The Academic Side</h3>
+          <p>I'm pursuing Computer Science and Engineering at North South University, building a foundation in programming, mathematics, and computational thinking.</p>
+        </article>
+        <article class="glass about-card reveal">
+          <div class="card-icon">🧠</div>
+          <h3>The Problem Solver</h3>
+          <p>I enjoy breaking complex problems into manageable pieces, exploring different approaches, and learning why a solution works—not just how to write it.</p>
+        </article>
+        <article class="glass about-card reveal">
+          <div class="card-icon">🚀</div>
+          <h3>The Long-Term Vision</h3>
+          <p>My goal is to grow into a capable software engineer through consistent practice, meaningful projects, and a willingness to keep learning.</p>
+        </article>
+      </div>
+    </section>
 
-<section class="content container" id="skills">
-  <p class="eyebrow">02 / TOOLKIT</p>
-  <h2>Skills I'm developing.</h2>
-  <div class="grid three">
-    <article class="card"><h3>C</h3><p>Programming fundamentals</p><div class="tags"><span>Practice</span></div></article>
-    <article class="card"><h3>C++</h3><p>OOP and problem-solving</p><div class="tags"><span>Practice</span></div></article>
-    <article class="card"><h3>Java</h3><p>Classes, objects, GUI</p><div class="tags"><span>Projects</span></div></article>
-    <article class="card"><h3>HTML & CSS</h3><p>Web fundamentals</p><div class="tags"><span>Learning</span></div></article>
-    <article class="card"><h3>Algorithms</h3><p>Building problem-solving skills</p><div class="tags"><span>Practice</span></div></article>
-    <article class="card"><h3>Git & GitHub</h3><p>Portfolio and version control</p><div class="tags"><span>Learning</span></div></article>
-  </div>
-</section>
+    <section class="section" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">02 / MY TOOLKIT</p>
+        <h2>⚡ Skills & <span class="gradient-text">Interests</span></h2>
+        <p>Technologies I'm learning and concepts I'm exploring.</p>
+      </div>
+      <div class="skills-layout">
+        <div class="glass skill-panel reveal">
+          <h3>⌘ Programming Languages</h3>
+          <div class="skill-list">
+            <div class="skill-item"><span class="skill-symbol c-symbol">C</span><div><strong>C</strong><p>Fundamentals, functions, pointers</p></div><span class="skill-level">LEARNING</span></div>
+            <div class="skill-item"><span class="skill-symbol cpp-symbol">C++</span><div><strong>C++</strong><p>OOP, classes, templates</p></div><span class="skill-level">LEARNING</span></div>
+            <div class="skill-item"><span class="skill-symbol java-symbol">☕</span><div><strong>Java</strong><p>OOP, inheritance, abstraction</p></div><span class="skill-level">LEARNING</span></div>
+            <div class="skill-item"><span class="skill-symbol web-symbol">⌘</span><div><strong>HTML / CSS / JS</strong><p>Portfolio and web fundamentals</p></div><span class="skill-level">EXPLORING</span></div>
+          </div>
+        </div>
+        <div class="glass interest-panel reveal">
+          <h3>🔭 Areas of Interest</h3>
+          <div class="interest-tags">
+            <span>Problem Solving</span><span>Data Structures</span>
+            <span>Algorithms</span><span>Software Engineering</span>
+            <span>Web Development</span><span>AI & Technology</span>
+            <span>Mathematics</span><span>Continuous Learning</span>
+          </div>
+          <div class="quote-box">
+            <span class="quote-mark">“</span>
+            <p>Understand the fundamentals. Build with purpose. Improve every day.</p>
+            <span class="mono">MY PERSONAL PHILOSOPHY</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="content container" id="projects">
-  <p class="eyebrow">03 / SELECTED WORK</p>
-  <h2>Things I've been building.</h2>
-  <div class="grid">
-    <article class="card">
-      <h3>RealEstate Pro</h3>
-      <p>A Java-based property management system concept with property types, users, and a graphical interface.</p>
-      <div class="tags"><span>Java</span><span>OOP</span><span>Swing GUI</span></div>
-      <p><a href="https://github.com/nirrrob" target="_blank" rel="noreferrer">View my GitHub profile ↗</a></p>
-    </article>
-    <article class="card">
-      <h3>Algorithm Practice Log</h3>
-      <p>A growing collection of programming problems, notes, and solutions as I improve my algorithmic thinking.</p>
-      <div class="tags"><span>C++</span><span>Algorithms</span></div>
-      <p>Coming soon.</p>
-    </article>
-  </div>
-</section>
+    <section class="section" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">03 / BUILT WHILE LEARNING</p>
+        <h2>🛠️ Selected <span class="gradient-text">Projects</span></h2>
+        <p>Small steps today. More ambitious builds tomorrow.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div class="project-art art-one"><span class="art-icon">⌘</span><span class="art-label">C / C++</span><div class="art-lines">01<br>10<br>11</div></div>
+          <div class="project-body"><div class="project-type">01 — FUNDAMENTALS</div><h3>Programming Experiments</h3><p>A collection of exercises exploring logic, functions, classes, and core programming concepts.</p><div class="project-tags"><span>C</span><span>C++</span><span>OOP</span></div><a href="https://github.com/nirrrob" target="_blank" rel="noopener noreferrer" class="project-link">Explore on GitHub ↗</a></div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-art art-two"><span class="art-icon">⌂</span><span class="art-label">JAVA / OOP</span><div class="art-lines">▤<br>▥<br>▤</div></div>
+          <div class="project-body"><div class="project-type">02 — OBJECT-ORIENTED DESIGN</div><h3>Property Management</h3><p>A learning project simulating property management while practising Java classes, objects, and program structure.</p><div class="project-tags"><span>Java</span><span>OOP</span><span>Logic</span></div><a href="https://github.com/nirrrob" target="_blank" rel="noopener noreferrer" class="project-link">Explore on GitHub ↗</a></div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-art art-three"><span class="art-icon">✦</span><span class="art-label">HTML / CSS / JS</span><div class="art-lines">01<br>01<br>10</div></div>
+          <div class="project-body"><div class="project-type">03 — PERSONAL BRAND</div><h3>Developer Portfolio</h3><p>This website: a personal corner of the internet to share my interests, learning journey, and projects.</p><div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a href="https://github.com/nirrrob/myself" target="_blank" rel="noopener noreferrer" class="project-link">View Repository ↗</a></div>
+        </article>
+      </div>
+      <p class="project-note">Projects are learning-focused descriptions. Update them as your repositories and implementations evolve.</p>
+    </section>
 
-<section class="content container" id="interests">
-  <p class="eyebrow">04 / BEYOND THE CODE</p>
-  <h2>Curious about the universe.</h2>
-  <div class="grid">
-    <article class="card"><h3>Astronomy & astrophysics</h3><p>I enjoy astronomy podcasts, especially those featuring Brian Cox, and learning about the universe.</p></article>
-    <article class="card"><h3>Exoplanets & planetary formation</h3><p>I'm fascinated by how planetary systems form and how scientists discover worlds beyond our Solar System.</p></article>
-    <article class="card"><h3>Extraterrestrial civilizations</h3><p>The possibility of life beyond Earth is one of the questions that keeps me curious.</p></article>
-    <article class="card"><h3>Cricket & football</h3><p>I support Bangladesh and New Zealand in cricket, and Argentina and FC Barcelona in football.</p></article>
-  </div>
-</section>
+    <section class="section countdown-section" id="countdown">
+      <div class="countdown-box reveal">
+        <div class="countdown-copy">
+          <p class="eyebrow">04 / THE JOURNEY AHEAD</p>
+          <h2>⏳ Every second is<br><span class="gradient-text">a chance to grow.</span></h2>
+          <p>My university journey is one part of a much bigger story. The real goal is to graduate with knowledge, practical skills, and things worth building.</p>
+          <span class="countdown-caption">TARGET DATE · 30 JUNE 2029</span>
+        </div>
+        <div class="countdown-clock">
+          <div class="clock-top"><span class="pulse"></span> TIME UNTIL TARGET</div>
+          <div class="timer-grid">
+            <div class="timer-unit"><strong id="days">000</strong><span>DAYS</span></div>
+            <div class="timer-unit"><strong id="hours">00</strong><span>HOURS</span></div>
+            <div class="timer-unit"><strong id="minutes">00</strong><span>MINUTES</span></div>
+            <div class="timer-unit"><strong id="seconds">00</strong><span>SECONDS</span></div>
+          </div>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          <div class="progress-info"><span>THE JOURNEY IS IN PROGRESS</span><span id="progressPercent">IN MOTION</span></div>
+          <div class="live-time">🕒 LOCAL TIME <span id="localTime">Loading...</span></div>
+        </div>
+      </div>
+    </section>
 
-<section class="content container contact" id="contact">
-  <p class="eyebrow">05 / CONTACT</p>
-  <h2>Let's connect.</h2>
-  <p>I'm learning, building, and open to connecting with fellow developers and students.</p>
-  <div class="buttons" style="justify-content:center">
-    <a class="button" href="https://github.com/nirrrob" target="_blank" rel="noreferrer">GitHub ↗</a>
-    <a class="button" href="https://www.linkedin.com/in/nafis-nirob-66773a349" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-    <a class="button" href="mailto:nfx4m.nirob@gmail.com">Email ↗</a>
-  </div>
-</section>
-</main>
+    <section class="section outside-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">05 / LIFE OUTSIDE THE EDITOR</p>
+        <h2>🌍 Outside <span class="gradient-text">Coding</span></h2>
+        <p>A little more about what keeps me inspired.</p>
+      </div>
+      <div class="outside-grid">
+        <article class="outside-card reveal"><span>⚽</span><h3>Football</h3><p>Messi, Argentina, and the magic of the beautiful game.</p></article>
+        <article class="outside-card reveal"><span>🎬</span><h3>Movies & Series</h3><p>Stories, science fiction, complex worlds, and unforgettable characters.</p></article>
+        <article class="outside-card reveal"><span>🧩</span><h3>Curiosity</h3><p>Exploring history, technology, mathematics, and how the world works.</p></article>
+        <article class="outside-card reveal"><span>📈</span><h3>Self-Improvement</h3><p>Learning consistently and working toward a better version of myself.</p></article>
+      </div>
+    </section>
 
-<footer><div class="container">
-  <a class="logo" href="#home">nafis<span>.dev</span></a>
-  <p>Designed and built by Nafis Mahmud Nirob · <span id="year"></span></p>
-</div></footer>
+    <section class="section contact-section" id="contact">
+      <div class="contact-card reveal">
+        <p class="eyebrow">06 / LET'S MAKE SOMETHING</p>
+        <h2>🤝 Have an idea?<br><span class="gradient-text">Let's connect.</span></h2>
+        <p>I'm always open to learning, exchanging ideas, and connecting with people who enjoy building things.</p>
+        <div class="contact-buttons">
+          <a class="btn btn-primary" href="https://github.com/nirrrob" target="_blank" rel="noopener noreferrer">🐙 GitHub ↗</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn ↗</a>
+        </div>
+        <p class="contact-note">Replace the LinkedIn URL with your own profile when ready.</p>
+      </div>
+    </section>
+  </main>
 
-<script>
-(() => {
-  const splash = document.getElementById("splash-screen");
-  const button = document.getElementById("splash-enter");
-  let seconds = 3;
-  let finished = false;
-
-  function enterPortfolio() {
-    if (finished) return;
-    finished = true;
-    clearInterval(timer);
-    splash.classList.add("is-hidden");
-    document.body.style.overflow = "";
-    setTimeout(() => splash.remove(), 900);
-  }
-
-  function startCountdown() {
-    if (finished) return;
-    clearInterval(timer);
-    seconds = 3;
-    button.textContent = "Entering in 3... ↗";
-
-    timer = setInterval(() => {
-      seconds--;
-      if (seconds > 0) {
-        button.textContent = `Entering in ${seconds}... ↗`;
-      } else {
-        enterPortfolio();
-      }
-    }, 1000);
-  }
-
-  let timer;
-  splash.addEventListener("click", startCountdown);
-  button.addEventListener("click", event => event.stopPropagation());
-  button.addEventListener("click", startCountdown);
-
-  document.body.style.overflow = "hidden";
-  startCountdown();
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-})();
-</script>
+  <footer class="footer">
+    <a href="#home" class="logo">NN<span>.</span></a>
+    <p>Designed with curiosity. Built with code.</p>
+    <span class="mono">© <span id="year"></span> NAFIS NIROB</span>
+    <a href="#home" class="back-top">BACK TO TOP ↑</a>
+  </footer>
 </body>
 </html>
